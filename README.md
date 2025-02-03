@@ -1,0 +1,2 @@
+# cursfig
+CursedConfig
