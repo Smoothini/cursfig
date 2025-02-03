@@ -1,0 +1,30 @@
+# Config types:
+#   1. 1 file -> 1 path
+#   2. x files -> 1 path
+#   3. x files -> x paths
+#   4. 1 folder -> 1 path
+#   5. x folders -> 1 path
+#   6. x folders -> x paths
+---
+configs:
+
+  - program: "NeoVim"
+    config:
+      files: [ "init.vim" ]
+      path_win: "%APPDATA%/../Local/nvim"
+      path_lin: ~
+      path_max: ~
+
+  - program: "Keypirinha"
+    config:
+      files: [ "apps.ini", "Keypirinha.ini" ]
+      path_win: "%USERPROFILE%/Desktop/Keypirinha/portable/Profile/User"
+      path_lin: ~
+      path_max: ~
+
+  -program: "WezTerm"
+   config:
+      files: [ ".wezterm.lua" ]
+      path_win: "%USERPROFILE%/"
+      path_lin: ~
+      path_max: ~
