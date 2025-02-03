@@ -22,8 +22,8 @@ configs:
       path_lin: ~
       path_max: ~
 
-  -program: "WezTerm"
-   config:
+  - program: "WezTerm"
+    config:
       files: [ ".wezterm.lua" ]
       path_win: "%USERPROFILE%/"
       path_lin: ~
