@@ -5,26 +5,46 @@
 #   4. 1 folder -> 1 path
 #   5. x folders -> 1 path
 #   6. x folders -> x paths
+# Things you should be able to do
+#   1. copy system config to cursefig
+#   2. copy cursefig config to system
+#   3. copy only 1, else its atomic
+#   4. make sure you backup
+#   5. backups
+#   6. logs
 ---
 configs:
 
   - program: "NeoVim"
-    config:
-      files: [ "init.vim" ]
-      path_win: "%APPDATA%/../Local/nvim"
-      path_lin: ~
-      path_max: ~
+    configs:
+      - type: files
+        files: [ "init.vim" ]
+        path_win: "%APPDATA%/../Local/nvim"
+        path_lin: ~
+        path_mac: ~
+      - type: files
+        files: [ "iniiiit.vim", "muianu.lua" ]
+        path_win: "%APPDATA%/../Local/nviiiim"
+        path_lin: ~
+        path_mac: ~
 
   - program: "Keypirinha"
-    config:
-      files: [ "apps.ini", "Keypirinha.ini" ]
-      path_win: "%USERPROFILE%/Desktop/Keypirinha/portable/Profile/User"
-      path_lin: ~
-      path_max: ~
+    configs:
+      - type: files
+        files: [ "apps.ini", "Keypirinha.ini" ]
+        path_win: "%USERPROFILE%/Desktop/Keypirinha/portable/Profile/User"
+        path_lin: ~
+        path_mac: ~
 
   - program: "WezTerm"
-    config:
-      files: [ ".wezterm.lua" ]
-      path_win: "%USERPROFILE%/"
-      path_lin: ~
-      path_max: ~
+    configs:
+      - type: files
+        files: [ ".wezterm.lua" ]
+        path_win: "%USERPROFILE%/"
+        path_lin: ~
+        path_mac: ~
+      - type: folders
+        folders: [ ~ ]
+        path_win: "%USERPROFILE%/nf"
+        path_lin: ~
+        path_mac: ~
