@@ -1,0 +1,38 @@
+{
+  "name": "dev-workstation",
+  "os": "linux",
+  "collections": [
+    { "name": "vim",       "kind": "program", "path": "~",                   "additional_resources": [] },
+    { "name": "neovim",    "kind": "program", "path": "~/.config/nvim",      "additional_resources": [] },
+    { "name": "helix",     "kind": "program", "path": "~/.config/helix",     "additional_resources": [] },
+    { "name": "git",       "kind": "program", "path": "~",                   "additional_resources": [] },
+    { "name": "ssh",       "kind": "program", "path": "~/.ssh",              "additional_resources": [] },
+    { "name": "bash",      "kind": "program", "path": "~",                   "additional_resources": [] },
+    { "name": "zsh",       "kind": "program", "path": "~",                   "additional_resources": [] },
+    { "name": "fish",      "kind": "program", "path": "~/.config/fish",      "additional_resources": [] },
+    { "name": "tmux",      "kind": "program", "path": "~",                   "additional_resources": [] },
+    { "name": "alacritty", "kind": "program", "path": "~/.config/alacritty", "additional_resources": [] },
+    { "name": "starship",  "kind": "program", "path": "~/.config",           "additional_resources": [] },
+    { "name": "vscode",    "kind": "program", "path": "~/.config/Code/User", "additional_resources": [] },
+    { "name": "pip",       "kind": "program", "path": "~/.config/pip",       "additional_resources": [] },
+    { "name": "npm",       "kind": "program", "path": "~",                   "additional_resources": [] },
+    { "name": "gpg",       "kind": "program", "path": "~/.gnupg",            "additional_resources": [] },
+    { "name": "curl",      "kind": "program", "path": "~",                   "additional_resources": [] },
+    { "name": "wget",      "kind": "program", "path": "~",                   "additional_resources": [] },
+    { "name": "htop",      "kind": "program", "path": "~/.config/htop",      "additional_resources": [] },
+    { "name": "keepassxc", "kind": "program", "path": "~/.config/keepassxc", "additional_resources": [] },
+    {
+      "name": "obsidian",
+      "kind": "program",
+      "path": "~/.config/obsidian",
+      "additional_resources": [
+        {
+          "name":    "personal vault settings",
+          "paths":   { "linux": "~/Documents/MyVault", "windows": "D:/MyVault", "macos": "~/Documents/MyVault" },
+          "files":   [],
+          "folders": [".obsidian"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "gaming",
+  "os": "windows",
+  "collections": [
+    { "name": "minecraft",      "kind": "game", "path": "%APPDATA%/.minecraft",  "additional_resources": [] },
+    { "name": "factorio",       "kind": "game", "path": "%APPDATA%/Factorio",     "additional_resources": [] },
+    { "name": "stardew-valley", "kind": "game", "path": "%APPDATA%/StardewValley","additional_resources": [] }
+  ]
+}

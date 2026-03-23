@@ -1,170 +1,153 @@
 # cursfig
 
-**cursfig** is a terminal-friendly configuration backup and restore tool with an optional GUI.
+Configuration backup/restore manager. Pure Python 3.10+, stdlib only.
 
-## Features
+## Usage
 
-- **Profile management** — create named profiles per machine/OS
-- **Default collections** — ships with known paths for NeoVim, WezTerm, Keypirinha, Minecraft, Super Meat Boy, and more
-- **Scan** — check which config files and folders actually exist on disk
-- **Backup** — push configs to local storage, GitHub, or Google Drive
-- **Restore** — pull configs back with conflict detection and overwrite warnings
-- **TUI** (Textual) — full terminal UI with keyboard shortcuts
-- **GUI** (tkinter) — dark-themed desktop interface
-- **CLI** — scriptable command-line interface (Click + Rich)
+```
+python cursfig.py <command> [options]
+```
+
+### Commands
+
+```bash
+# Scan PC for all known configs (linux | macos | windows)
+python cursfig.py scan linux
+python cursfig.py scan linux --create-profile my-machine
+
+# Check which files from a profile exist on disk (✓/✗)
+python cursfig.py check my-machine
+
+# Compare current files against a previous BOM (MD5 hash diff)
+python cursfig.py diff /backups/cursfig-my-machine-20250101T120000Z_BOM.json
+
+# Create a backup zip + BOM
+python cursfig.py backup my-machine /backups
+```
+
+Output files from `backup`:
+- `cursfig-PROFILE-ISODATETIME.zip` — outer zip, one inner zip per `kind`
+- `cursfig-PROFILE-ISODATETIME_BOM.json` — full file manifest with MD5, mtime, size
 
 ---
 
-## Installation
+## File Structure
 
-```bash
-pip install .
-# With GitHub support:
-pip install ".[github]"
-# With Google Drive support:
-pip install ".[gdrive]"
-# All optional deps:
-pip install ".[all]"
 ```
-
----
-
-## Quick Start
-
-### CLI
-
-```bash
-# Create a profile
-cursfig profile new mypc --os linux
-
-# See what default collections are available
-cursfig defaults
-
-# Add programs and games
-cursfig add program NeoVim
-cursfig add program WezTerm
-cursfig add game Minecraft
-
-# Scan: see what files exist on disk
-cursfig scan
-
-# Set up a backup provider (interactive)
-cursfig provider setup local
-cursfig provider setup github
-cursfig provider setup google_drive
-
-# Backup
-cursfig backup
-
-# Restore (warns on conflicts)
-cursfig restore
-```
-
-### TUI (interactive terminal UI)
-
-```bash
-cursfig tui
-```
-
-**TUI key bindings:**
-| Key | Action |
-|-----|--------|
-| `N` | New profile |
-| `S` | Scan |
-| `B` | Backup |
-| `R` | Restore |
-| `?` | Help |
-| `Q` | Quit |
-
-### GUI
-
-```bash
-cursfig --gui
-# or
-python -m cursfig --gui
+cursfig/
+├── cursfig.py          # the script
+├── collections.json    # all collection definitions
+└── profiles/
+    ├── dev-workstation.json
+    └── gaming.json
 ```
 
 ---
 
-## Profile YAML format
+## JSON Schemas
 
-Profiles are stored in `~/.cursfig/profiles/<name>.yaml`.
+### `collections.json` — array of collection objects
 
-```yaml
-profile:
-  name: "mypc"
-  description: "Work laptop"
-  os: "linux"
-  providers:
-    - github
-    - local
-  backup_policy:
-    programs:
-      providers: [github]
-    games:
-      providers: [google_drive, local]
-  collections:
-    programs:
-      - name: NeoVim
-      - name: WezTerm
-        additional_resources:
-          - name: "extra themes"
-            files: ["colors.lua"]
-            path:
-              linux: "~/.config/wezterm"
-    games:
-      - name: Minecraft
-        exclude_providers: [github]
-      - name: Supermeatboy
+```json
+[
+  {
+    "name": "vim",
+    "kind": "program",
+    "paths": {
+      "linux":   "~",
+      "macos":   "~",
+      "windows": "%USERPROFILE%"
+    },
+    "resources": [
+      {
+        "name":    "config",
+        "files":   [".vimrc"],
+        "folders": [".vim"]
+      }
+    ]
+  }
+]
+```
+
+- **`kind`**: free string — `program`, `game`, `script`, etc.
+- **`paths`**: OS → base path. Keys: `linux`, `macos`, `windows`.
+  Supports `~` and env vars (`%APPDATA%`, `%USERPROFILE%`, `%LOCALAPPDATA%`).
+  Omit an OS key if the program doesn't exist there.
+- **`resources`**: named sets of files/folders relative to the base path.
+  Folders are included recursively.
+
+### `profiles/<n>.json`
+
+```json
+{
+  "name": "my-machine",
+  "os": "linux",
+  "collections": [
+    {
+      "name": "vim",
+      "kind": "program",
+      "path": "~",
+      "additional_resources": [
+        {
+          "name":    "work extras",
+          "paths":   { "linux": "~/work/vim", "windows": "D:/work/vim" },
+          "files":   ["work.vim"],
+          "folders": []
+        }
+      ]
+    }
+  ]
+}
+```
+
+- **`os`**: `linux`, `macos`, or `windows`.
+- **`collections`**: each entry references a collection by name.
+  - **`path`**: the pre-resolved base path for this machine/OS. Written
+    automatically by `scan --create-profile`; edit manually if needed.
+    Resources from `collections.json` are resolved relative to this path.
+  - **`additional_resources`**: zero or more extras with their own `paths`
+    dict (same OS-keyed format). Resolved at runtime using the profile `os`.
+
+### BOM (`*_BOM.json`)
+
+```json
+{
+  "profile": "my-machine",
+  "os": "linux",
+  "created_at": "2025-01-01T12:00:00+00:00",
+  "total_files": 42,
+  "kinds": {
+    "program": {
+      "collections": {
+        "vim": {
+          "resources": {
+            "config": [
+              {
+                "path":     "/home/user/.vimrc",
+                "arc_name": "vim/.vimrc",
+                "md5":      "abc123...",
+                "mtime":    "2024-11-01T10:00:00+00:00",
+                "size":     1024
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
 ```
 
 ---
 
-## Default Collections
+## Adding Collections
 
-`default_collections.yaml` ships with the tool and can be overridden by placing your own at `~/.cursfig/default_collections.yaml`.
+Append an entry to `collections.json`. Reference it by `name` in a profile.
 
-Each entry defines:
-- **name** — matched case-insensitively against profile collections
-- **kind** — `program` or `game`
-- **resources** — list of named resource groups, each with per-OS paths and file/folder lists
+## Typical Workflow
 
----
-
-## Providers
-
-### Local
-Copies files to a directory on disk (USB drive, NAS, etc.).
-
-```bash
-cursfig provider setup local
-# Prompts for a directory path
-```
-
-### GitHub
-Uploads files to a GitHub repository using the API.
-
-```bash
-pip install ".[github]"
-cursfig provider setup github
-# Prompts for token and repo (user/repo)
-```
-
-### Google Drive
-Uploads files to a Google Drive folder.
-
-```bash
-pip install ".[gdrive]"
-cursfig provider setup google_drive
-# Prompts for credentials JSON and optional folder ID
-```
-
----
-
-## App data location
-
-| Item | Path |
-|------|------|
-| App config | `~/.cursfig/config.json` |
-| Profiles | `~/.cursfig/profiles/` |
-| Default collections override | `~/.cursfig/default_collections.yaml` |
+1. `scan linux --create-profile my-machine` — discover what's on this machine
+2. Edit `profiles/my-machine.json` — trim collections, add `additional_resources`
+3. `check my-machine` — verify everything looks right
+4. `backup my-machine ~/backups` — take a snapshot
+5. Later: `diff ~/backups/cursfig-my-machine-…_BOM.json` — see what changed

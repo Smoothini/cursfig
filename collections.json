@@ -1,0 +1,381 @@
+[
+  {
+    "name": "vim",
+    "kind": "program",
+    "paths": {
+      "linux":   "~",
+      "macos":   "~",
+      "windows": "%USERPROFILE%"
+    },
+    "resources": [
+      { "name": "config",  "files": [".vimrc", "_vimrc"], "folders": [] },
+      { "name": "runtime", "files": [".viminfo"],          "folders": [".vim", "vimfiles"] }
+    ]
+  },
+  {
+    "name": "neovim",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.config/nvim",
+      "macos":   "~/.config/nvim",
+      "windows": "%LOCALAPPDATA%/nvim"
+    },
+    "resources": [
+      { "name": "init",    "files": ["init.vim", "init.lua"], "folders": [] },
+      { "name": "runtime", "files": [],                       "folders": ["lua", "after", "plugin"] }
+    ]
+  },
+  {
+    "name": "helix",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.config/helix",
+      "macos":   "~/.config/helix",
+      "windows": "%APPDATA%/helix"
+    },
+    "resources": [
+      { "name": "config", "files": ["config.toml", "languages.toml"], "folders": ["themes"] }
+    ]
+  },
+  {
+    "name": "git",
+    "kind": "program",
+    "paths": {
+      "linux":   "~",
+      "macos":   "~",
+      "windows": "%USERPROFILE%"
+    },
+    "resources": [
+      { "name": "global config", "files": [".gitconfig", ".gitignore_global", ".git-credentials"], "folders": [] }
+    ]
+  },
+  {
+    "name": "ssh",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.ssh",
+      "macos":   "~/.ssh",
+      "windows": "%USERPROFILE%/.ssh"
+    },
+    "resources": [
+      { "name": "client config", "files": ["config", "known_hosts"], "folders": [] }
+    ]
+  },
+  {
+    "name": "bash",
+    "kind": "program",
+    "paths": {
+      "linux": "~",
+      "macos": "~"
+    },
+    "resources": [
+      { "name": "config", "files": [".bashrc", ".bash_profile", ".bash_aliases", ".bash_logout", ".inputrc"], "folders": [] }
+    ]
+  },
+  {
+    "name": "zsh",
+    "kind": "program",
+    "paths": {
+      "linux": "~",
+      "macos": "~"
+    },
+    "resources": [
+      { "name": "config",    "files": [".zshrc", ".zprofile", ".zshenv", ".zlogin", ".zlogout"], "folders": [] },
+      { "name": "oh-my-zsh", "files": [],                                                         "folders": [".oh-my-zsh/custom"] }
+    ]
+  },
+  {
+    "name": "fish",
+    "kind": "program",
+    "paths": {
+      "linux": "~/.config/fish",
+      "macos": "~/.config/fish"
+    },
+    "resources": [
+      { "name": "config", "files": ["config.fish"], "folders": ["functions", "conf.d"] }
+    ]
+  },
+  {
+    "name": "tmux",
+    "kind": "program",
+    "paths": {
+      "linux": "~",
+      "macos": "~"
+    },
+    "resources": [
+      { "name": "config (home)",  "files": [".tmux.conf"], "folders": [] },
+      { "name": "config (xdg)",   "files": [],             "folders": [] }
+    ]
+  },
+  {
+    "name": "tmux-xdg",
+    "kind": "program",
+    "paths": {
+      "linux": "~/.config/tmux",
+      "macos": "~/.config/tmux"
+    },
+    "resources": [
+      { "name": "config", "files": ["tmux.conf"], "folders": [] }
+    ]
+  },
+  {
+    "name": "alacritty",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.config/alacritty",
+      "macos":   "~/.config/alacritty",
+      "windows": "%APPDATA%/alacritty"
+    },
+    "resources": [
+      { "name": "config", "files": ["alacritty.toml", "alacritty.yml"], "folders": [] }
+    ]
+  },
+  {
+    "name": "starship",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.config",
+      "macos":   "~/.config",
+      "windows": "%USERPROFILE%/.config"
+    },
+    "resources": [
+      { "name": "config", "files": ["starship.toml"], "folders": [] }
+    ]
+  },
+  {
+    "name": "vscode",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.config/Code/User",
+      "macos":   "~/Library/Application Support/Code/User",
+      "windows": "%APPDATA%/Code/User"
+    },
+    "resources": [
+      { "name": "settings", "files": ["settings.json", "keybindings.json"], "folders": ["snippets"] }
+    ]
+  },
+  {
+    "name": "sublime-text",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.config/sublime-text/Packages/User",
+      "macos":   "~/Library/Application Support/Sublime Text/Packages/User",
+      "windows": "%APPDATA%/Sublime Text/Packages/User"
+    },
+    "resources": [
+      { "name": "settings",    "files": ["Preferences.sublime-settings"], "folders": [] },
+      { "name": "keybindings", "files": ["Default (Linux).sublime-keymap", "Default (OSX).sublime-keymap", "Default (Windows).sublime-keymap"], "folders": [] }
+    ]
+  },
+  {
+    "name": "jetbrains",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.config/JetBrains",
+      "macos":   "~/Library/Application Support/JetBrains",
+      "windows": "%APPDATA%/JetBrains"
+    },
+    "resources": [
+      { "name": "config", "files": [], "folders": [] }
+    ]
+  },
+  {
+    "name": "powershell",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.config/powershell",
+      "macos":   "~/.config/powershell",
+      "windows": "%USERPROFILE%/Documents/PowerShell"
+    },
+    "resources": [
+      { "name": "profile", "files": ["Microsoft.PowerShell_profile.ps1"], "folders": [] }
+    ]
+  },
+  {
+    "name": "windows-terminal",
+    "kind": "program",
+    "paths": {
+      "windows": "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState"
+    },
+    "resources": [
+      { "name": "settings", "files": ["settings.json"], "folders": [] }
+    ]
+  },
+  {
+    "name": "windows-terminal-preview",
+    "kind": "program",
+    "paths": {
+      "windows": "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState"
+    },
+    "resources": [
+      { "name": "settings", "files": ["settings.json"], "folders": [] }
+    ]
+  },
+  {
+    "name": "mpv",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.config/mpv",
+      "macos":   "~/.config/mpv",
+      "windows": "%APPDATA%/mpv"
+    },
+    "resources": [
+      { "name": "config",   "files": ["mpv.conf", "input.conf"],  "folders": [] },
+      { "name": "scripts",  "files": [],                           "folders": ["scripts", "script-opts"] }
+    ]
+  },
+  {
+    "name": "htop",
+    "kind": "program",
+    "paths": {
+      "linux": "~/.config/htop",
+      "macos": "~/.config/htop"
+    },
+    "resources": [
+      { "name": "config", "files": ["htoprc"], "folders": [] }
+    ]
+  },
+  {
+    "name": "nano",
+    "kind": "program",
+    "paths": {
+      "linux": "~",
+      "macos": "~"
+    },
+    "resources": [
+      { "name": "config (home)", "files": [".nanorc"], "folders": [] }
+    ]
+  },
+  {
+    "name": "nano-xdg",
+    "kind": "program",
+    "paths": {
+      "linux": "~/.config/nano",
+      "macos": "~/.config/nano"
+    },
+    "resources": [
+      { "name": "config", "files": ["nanorc"], "folders": [] }
+    ]
+  },
+  {
+    "name": "gpg",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.gnupg",
+      "macos":   "~/.gnupg",
+      "windows": "%APPDATA%/gnupg"
+    },
+    "resources": [
+      { "name": "config", "files": ["gpg.conf", "gpg-agent.conf", "dirmngr.conf"], "folders": [] }
+    ]
+  },
+  {
+    "name": "curl",
+    "kind": "program",
+    "paths": {
+      "linux":   "~",
+      "macos":   "~",
+      "windows": "%USERPROFILE%"
+    },
+    "resources": [
+      { "name": "config", "files": [".curlrc", "_curlrc"], "folders": [] }
+    ]
+  },
+  {
+    "name": "wget",
+    "kind": "program",
+    "paths": {
+      "linux": "~",
+      "macos": "~"
+    },
+    "resources": [
+      { "name": "config", "files": [".wgetrc"], "folders": [] }
+    ]
+  },
+  {
+    "name": "pip",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.config/pip",
+      "macos":   "~/Library/Application Support/pip",
+      "windows": "%APPDATA%/pip"
+    },
+    "resources": [
+      { "name": "config", "files": ["pip.conf", "pip.ini"], "folders": [] }
+    ]
+  },
+  {
+    "name": "npm",
+    "kind": "program",
+    "paths": {
+      "linux":   "~",
+      "macos":   "~",
+      "windows": "%USERPROFILE%"
+    },
+    "resources": [
+      { "name": "config", "files": [".npmrc"], "folders": [] }
+    ]
+  },
+  {
+    "name": "keepassxc",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.config/keepassxc",
+      "macos":   "~/Library/Application Support/keepassxc",
+      "windows": "%APPDATA%/KeePassXC"
+    },
+    "resources": [
+      { "name": "config", "files": ["keepassxc.ini"], "folders": [] }
+    ]
+  },
+  {
+    "name": "obsidian",
+    "kind": "program",
+    "paths": {
+      "linux":   "~/.config/obsidian",
+      "macos":   "~/Library/Application Support/obsidian",
+      "windows": "%APPDATA%/obsidian"
+    },
+    "resources": [
+      { "name": "app config", "files": ["obsidian.json"], "folders": [] }
+    ]
+  },
+  {
+    "name": "minecraft",
+    "kind": "game",
+    "paths": {
+      "linux":   "~/.minecraft",
+      "macos":   "~/Library/Application Support/minecraft",
+      "windows": "%APPDATA%/.minecraft"
+    },
+    "resources": [
+      { "name": "options",  "files": ["options.txt", "servers.dat"], "folders": [] },
+      { "name": "content",  "files": [],                              "folders": ["resourcepacks", "shaderpacks"] }
+    ]
+  },
+  {
+    "name": "factorio",
+    "kind": "game",
+    "paths": {
+      "linux":   "~/.factorio",
+      "macos":   "~/Library/Application Support/factorio",
+      "windows": "%APPDATA%/Factorio"
+    },
+    "resources": [
+      { "name": "config", "files": ["config/config.ini", "player-data.json"], "folders": [] },
+      { "name": "mods",   "files": [],                                          "folders": ["mods"] }
+    ]
+  },
+  {
+    "name": "stardew-valley",
+    "kind": "game",
+    "paths": {
+      "linux":   "~/.config/StardewValley",
+      "macos":   "~/Library/Application Support/StardewValley",
+      "windows": "%APPDATA%/StardewValley"
+    },
+    "resources": [
+      { "name": "saves", "files": [], "folders": ["Saves"] }
+    ]
+  }
+]
