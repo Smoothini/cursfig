@@ -1,0 +1,60 @@
+# collections -> resources -> files/folders
+# default values for common programs and games bellow
+---
+default_collections:
+  - name: NeoVim
+    kind: program
+    resources:
+      - name: "Main config"
+        files: [ "init.vim", "some_file" ]
+        folders: [ "some_folder" ]
+        path:
+          windows: "%APPDATA%/../Local/nvim"
+          linux: "~"
+          macos: "~"
+      - name: "extra config" 
+        files: [ "randomfile.lua" ]
+        path:
+          windows: "%APPDATA%/../Local/nviiiim"
+          linux: "~"
+          macos: "~"
+
+  - name: "Keypirinha"
+    kind: program
+    resources:
+      - name: "main config"
+        files: [ "apps.ini", "Keypirinha.ini" ]
+        path:
+          windows: "%USERPROFILE%/Desktop/Keypirinha/portable/Profile/User"
+          linux: "~"
+          macos: "~"
+
+  - name: "WezTerm"
+    kind: program
+    resources:
+      - name: "main config"
+        files: [ ".wezterm.lua" ]
+        path:
+          windows: "%USERPROFILE%/"
+          linux: "~"
+          macos: "~"
+
+  - name: "Minecraft"
+    kind: game
+    resources:
+      - name: "worlds location"
+        folders: [ "worlds" ]
+        path:
+          windows: "%USERPROFILE%/"
+          linux: "~"
+          macos: "~"
+
+  - name: "Supermeatboy"
+    kind: game
+    resources:
+      - name: "savegame"
+        files: [ "smb.profile" ]
+        path:
+          windows: "%USERPROFILE%/"
+          linux: "~"
+          macos: "~"

@@ -1,0 +1,25 @@
+---
+profile:
+  name: "Default"
+  description: "Default profile for new users. You can edit this file to add more collections and resources."
+  os: "windows"
+  providers:
+    - github
+    - google_drive
+  backup_policy:
+    programs:
+      providers: [github]
+    games:
+      providers: [google_drive, github]
+  collections:
+    programs:
+      - name: WezTerm
+      - name: NeoVim
+        additional_resources:
+          - name: "extra config" 
+            files: [ "randomfile.lua" ]
+            path: "some_path"
+    games:
+      - name: "Minecraft"
+        exclude_providers: [github]
+      - name: "Supermeatboy"
