@@ -175,3 +175,4 @@ cython_debug/
 
 .vscode
 *.zip
+*_BOM.json
