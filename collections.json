@@ -377,5 +377,25 @@
     "resources": [
       { "name": "saves", "files": [], "folders": ["Saves"] }
     ]
+  },
+  {
+    "name": "One finger death punch",
+    "kind": "game",
+    "paths": {
+      "windows": "%USERPROFILE%/Documents/SavedGames/One Finger Death Punch"
+    },
+    "resources": [
+      { "name": "saves", "files": [], "folders": ["Game_Save"] }
+    ]
+  },
+  {
+    "name": "Cacat",
+    "kind": "test",
+    "paths": {
+      "windows": "C:/projects/github/cursfig"
+    },
+    "resources": [
+      { "name": "config", "files": ["muie.txt"], "folders": [] }
+    ]
   }
 ]

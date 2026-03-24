@@ -1,0 +1,18 @@
+{
+  "name": "msi",
+  "os": "windows",
+  "collections": [
+    {
+      "name": "One finger death punch",
+      "kind": "game",
+      "path": "%USERPROFILE%/Documents/SavedGames/One Finger Death Punch",
+      "additional_resources": []
+    },
+    {
+      "name": "Cacat",
+      "kind": "test",
+      "path": "C:/projects/github/cursfig",
+      "additional_resources": []
+    }
+  ]
+}

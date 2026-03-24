@@ -159,12 +159,13 @@ def cmd_scan(args):
         if not res_summary:
             continue
 
-        found.append((col_name, str(base)))
+        found.append((col_name, raw))
         print(f"\n  [{col_def.get('kind','?')}] {col_name}  ({base})")
         for res_name, files in res_summary:
-            print(f"    resource: {res_name}  ({len(files)} file(s))")
-            for f in files:
-                print(f"      {f}")
+            print(f"    resource: {res_name}  ({len(files)} file{'s' if len(files) != 1 else ''})")
+            if args.expand_files_tree:
+                for f in files:
+                    print(f"      {f}")
 
     if not found:
         print("Nothing found on this system for the given OS.")
@@ -305,7 +306,7 @@ def cmd_backup(args):
     output_dir.mkdir(parents=True, exist_ok=True)
 
     now       = datetime.now(tz=timezone.utc)
-    iso_stamp = now.strftime("%Y%m%dT%H%M%SZ")
+    iso_stamp = now.strftime("%Y-%m-%d--%H%M%S")
     base_name = f"cursfig-{args.profile}-{iso_stamp}"
     zip_path  = output_dir / f"{base_name}.zip"
     bom_path  = output_dir / f"{base_name}_BOM.json"
@@ -384,9 +385,13 @@ def main():
     p_scan.add_argument("os", help="OS key: linux | macos | windows")
     p_scan.add_argument("--create-profile", metavar="NAME",
                         help="Save found collections as a new profile")
+    p_scan.add_argument("-e", "--expand-files-tree", action="store_true",
+                        help="Expand and list full file tree instead of just root paths")
 
     p_check = sub.add_parser("check", help="Check which profile files exist on disk")
     p_check.add_argument("profile", help="Profile name")
+    p_check.add_argument("--profiles", metavar="PROFILES",
+                        help="Save found collections as a new profile")
 
     p_diff = sub.add_parser("diff", help="Compare current files against a BOM (MD5)")
     p_diff.add_argument("bom", help="Path to BOM JSON file")

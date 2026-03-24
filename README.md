@@ -1,4 +1,4 @@
-# cursfig
+# cursfig 🏗🏗🏗in progress🏗
 
 Configuration backup/restore manager. Pure Python 3.10+, stdlib only.
 
